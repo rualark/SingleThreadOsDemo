@@ -1,8 +1,16 @@
-# Magick-OS
+# Simple OS Demo
+
+## Functions
+
+- Boots with grub in qemu or USB flash
+- Printing
+- Input string
+- Precise nanosleep using PIT
+- Move cursor
 
 ## Background
 
-Based on [this](https://www.youtube.com/watch?v=FkrpUaGThTQ&list=PLZQftyCk7_SeZRitx5MjBKzTtvk0pHMtp&index=1) tutorial by CodePulse and [this](https://github.com/pritamzope/OS/tree/master/Kernel/Keyboard) project by pritamzope.
+Based on [this](https://www.youtube.com/watch?v=FkrpUaGThTQ&list=PLZQftyCk7_SeZRitx5MjBKzTtvk0pHMtp&index=1) tutorial by CodePulse, and [this](https://github.com/Roseinabox28/MagickOS) project.
 
 ## Setup
 
@@ -31,3 +39,22 @@ Emulate Magick-OS using Qemu
 use this one if you have added to path and the previous doesn't work
 
 - `"C:\Program Files\qemu\qemu-system-x86_64.exe" -cdrom dist/x86_64/kernel.iso`
+
+## How to boot this image on real hardware.
+
+First open real Command Prompt (do not use Far or anything else). Then go to your local folder, where os-series is:
+
+```
+cd x:\app\os-series
+x:
+docker run --rm -it -v "%cd%":/root/env myos-buildenv
+make build-x86_64
+```
+
+Now dist/x86_64/ will contain kernel.iso file
+
+Insert USB flash drive
+Download Rufus
+
+![image](https://user-images.githubusercontent.com/15198808/127573774-8b746020-bbcb-402c-ae2b-91dee1957b5b.png)
+![image](https://user-images.githubusercontent.com/15198808/127573784-d2187d4d-2a3c-4287-a297-f8194961b838.png)
