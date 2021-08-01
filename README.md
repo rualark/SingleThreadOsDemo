@@ -1,6 +1,6 @@
 # Simple OS Demo
 
-![image](https://i.imgur.com/KMH6EcY.gif)
+![nXr2GDLaGT](https://user-images.githubusercontent.com/15198808/127781494-8b7b0731-7db1-48df-bb2d-737475fc822b.gif)
 
 ## Functions
 
