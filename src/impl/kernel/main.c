@@ -42,7 +42,7 @@ void kernel_main() {
         for (int w = 0; w < 10; ++w) {
             show_date_time();
             show_color_spin();
-            show_random_beetle();
+            show_random_ship();
         }
         print_str(".");
     }
@@ -62,7 +62,7 @@ void kernel_main() {
     while (true) {
         show_date_time();
         show_color_spin();
-        show_random_beetle();
+        show_random_ship();
     }
 }
 

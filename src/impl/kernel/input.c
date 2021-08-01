@@ -9,7 +9,7 @@ static ui8 get_input_keycode() {
         // This is just colored spin as a demo
         show_date_time();
         show_color_spin();
-        show_random_beetle();
+        show_random_ship();
         code = inb(KEYBOARD_PORT);
     }
     
@@ -28,6 +28,7 @@ bool input_str(char* str, int max_len) {
     bool ctrl = false;
     bool numlock = true;
     bool scrolllock = false;
+    ui32 repeats = 0;
 
     ui8 last_keycode = 0;
     int pos = 0;
@@ -35,7 +36,12 @@ bool input_str(char* str, int max_len) {
         ui8 c = get_input_keycode();
         // Skip repeating keys
         if (c == last_keycode) {
-            continue;
+            ++repeats;
+            if (repeats < 40 || repeats % 8 != 0) {
+                continue;
+            }
+        } else {
+            repeats = 0;
         }
         last_keycode = c;
         if (c == KEY_LEFT_SHIFT_RELEASE) {
