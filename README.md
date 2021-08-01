@@ -1,15 +1,18 @@
 # Simple OS Demo
 
-![image](https://user-images.githubusercontent.com/15198808/127759750-57841673-2c92-4396-8916-d6fddcbc2843.png)
+![image](https://i.imgur.com/KMH6EcY.gif)
 
 ## Functions
 
 - Boots with grub in qemu or USB flash
 - Printing
-- Input string
+- Input string (supports Shift, BackSpace, Enter, Esc)
 - Precise nanosleep using PIT
 - Move cursor
-- Shows real-time colorful animation
+- Pseudo random number generator
+- Shows CPU vendor string
+- Shows date and time (updates every second)
+- Shows asynchronous real-time random colorful animation with fixed speed
 
 ## Nanosleep implementation
 
