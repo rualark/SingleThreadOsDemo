@@ -4,11 +4,6 @@
 
 #include "chars.h"
 
-struct ColorChar {
-    ui8 character;
-    ui8 color;
-};
-
 struct ColorChar * color_text_video_buffer = (struct ColorChar * ) 0xb8000;
 size_t col = 0;
 size_t row = 0;
@@ -79,6 +74,10 @@ void print_char(char character) {
     input_pos = col + NUM_COLS * row;
     col++;
     move_cursor(col, row);
+}
+
+struct ColorChar get_screen_color_char(ui8 column, ui8 row) {
+    return color_text_video_buffer[column + NUM_COLS * row];
 }
 
 void print_str(char * str) {

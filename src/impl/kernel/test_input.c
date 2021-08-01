@@ -5,3 +5,9 @@ void test_input_str() {
         print_str(str);
     }
 }
+
+void test_ascii() {
+    for (char c = 0; c < 256; ++c) {
+        print_char(c);
+    }
+}

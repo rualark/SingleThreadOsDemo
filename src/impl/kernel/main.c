@@ -36,10 +36,14 @@ void kernel_main() {
     print_str(vendor_str);
 
     print_set_color(PRINT_COLOR_WHITE, PRINT_COLOR_BLACK);
-    print_str("\n\nWaiting exactly for 3 seconds: ");
+    print_str("\n\nWaiting for exactly 3 seconds: ");
     nanosleep_init();
     for (int i = 0; i < 30; i++) {
-        nanosleep(100000);
+        for (int w = 0; w < 10; ++w) {
+            show_date_time();
+            show_color_spin();
+            show_random_beetle();
+        }
         print_str(".");
     }
 
@@ -56,8 +60,9 @@ void kernel_main() {
     print_str("\n\nGood bye!");
 
     while (true) {
-        show_spin();
         show_date_time();
+        show_color_spin();
+        show_random_beetle();
     }
 }
 
