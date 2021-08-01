@@ -37,7 +37,7 @@ struct Fire {
     struct ColorChar history;
 };
 
-#define MAX_FIRES 200
+#define MAX_FIRES 400
 struct Fire fire[MAX_FIRES];
 
 static ui8 ship_column = 40;
@@ -48,16 +48,16 @@ static struct ColorChar ship_history = (struct ColorChar) {
     color: PRINT_COLOR_WHITE | PRINT_COLOR_BLACK << 4
 };
 
-void new_fire(char ship_char) {
+void new_fire(ui8 column, ui8 row, char character) {
     for (int i = 0; i < MAX_FIRES; ++i) {
         // Find free fire
         if (!fire[i].active) {
             fire[i].active = true;
             fire[i].color = ship_color;
             fire[i].speed = rand() % 12 + 1;
-            fire[i].row = ship_row;
-            fire[i].column = ship_column;
-            fire[i].direction = ship_char;
+            fire[i].row = row;
+            fire[i].column = column;
+            fire[i].direction = character;
             // Move fire
             if (fire[i].direction == LEFT_ARROW) {
                 fire[i].column--;
@@ -88,15 +88,24 @@ void hide_fires() {
                     pprint_char(fire[i].column, fire[i].row, fire[i].history.character, fire[i].history.color, PRINT_COLOR_BLACK);
                 }
             } else {
-                pprint_char(fire[i].column, fire[i].row, '\x09', fire[i].history.color, PRINT_COLOR_BLACK);
+                char fire_char = '\x09';
+                if (fire[i].direction == LEFT_ARROW) {
+                    fire_char = '\x1B';
+                }
+                if (fire[i].direction == RIGHT_ARROW) {
+                    fire_char = '\x1A';
+                }
+                pprint_char(fire[i].column, fire[i].row, fire_char, fire[i].color, PRINT_COLOR_BLACK);
             }
         }
     }
 }
 
 void move_fires() {
+    ui16 fires = 0;
     for (int i = 0; i < MAX_FIRES; ++i) {
         if (fire[i].active) {
+            ++fires;
             // Move fire
             if (spin % fire[i].speed == 0) {
                 if (fire[i].direction == LEFT_ARROW) {
@@ -122,24 +131,39 @@ void move_fires() {
                 }
                 if (fire[i].direction == DOWN_ARROW) {
                     fire[i].row++;
-                    if (fire[i].row >= NUM_COLS) {
+                    if (fire[i].row >= NUM_ROWS) {
                         fire[i].active = false;
                         continue;
+                    }
+                    if (fire[i].row == 22) {
+                        if (fire[i].column > 0 && fire[i].column < NUM_COLS - 1) {
+                            new_fire(fire[i].column, fire[i].row, LEFT_ARROW);
+                            new_fire(fire[i].column, fire[i].row, RIGHT_ARROW);
+                        }
                     }
                 }
             }
             fire[i].history = get_screen_color_char(fire[i].column, fire[i].row);
         }
     }
+    pprint_str(45, 23, "Elements:", PRINT_COLOR_YELLOW, PRINT_COLOR_BLACK);
+    pprint_int_pad(55, 23, fires, 3, PRINT_COLOR_YELLOW, PRINT_COLOR_BLACK);
 }
 
 void show_fires() {
     for (int i = 0; i < MAX_FIRES; ++i) {
         if (fire[i].active) {
             char fire_char = '\x07';
-            if (fire[i].column == 0 || fire[i].column == NUM_COLS - 1 || fire[i].row == 0 || fire[i].row == NUM_ROWS - 1) {
+            if (fire[i].row == 0 || fire[i].row == NUM_ROWS - 1) {
                 fire_char = '\x0F';
                 fire[i].speed = 200;
+            }
+            if (fire[i].column == 0 || fire[i].column == NUM_COLS - 1) {
+                fire_char = '\x0F';
+                if (fire[i].direction == LEFT_ARROW || fire[i].direction == RIGHT_ARROW) {
+                    fire[i].speed = rand() % 10 + 10;
+                    fire[i].direction = DOWN_ARROW;
+                }
             }
             // Draw fire
             pprint_char(fire[i].column, fire[i].row, fire_char, fire[i].color, PRINT_COLOR_BLACK);
@@ -217,7 +241,7 @@ void show_random_ship() {
     hide_fires();
     if (spin % 15 == 0) {
         if (ship_char != '\x0F' && rand() % 1 == 0 && ship_column > 1 && ship_column < NUM_COLS - 2 && ship_row > 1 && ship_row < NUM_ROWS - 2) {
-            new_fire(ship_char);
+            new_fire(ship_column, ship_row, ship_char);
         }
     }
     move_fires();
