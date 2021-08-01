@@ -10,6 +10,10 @@
 - Precise nanosleep using PIT
 - Move cursor
 
+## Nanosleep implementation
+
+The idea behind nanosleep implementation: read PIT counter and calculate number of ticks that happened after the previous read. This results in precise delay, but as interrupt handling is not used, CPU cannot do other work. In this case there is no other work, so it is ok. In real world you should better implement interrupt handlers.
+
 ## Background
 
 Based on [this](https://www.youtube.com/watch?v=FkrpUaGThTQ&list=PLZQftyCk7_SeZRitx5MjBKzTtvk0pHMtp&index=1) tutorial by CodePulse, and [this](https://github.com/Roseinabox28/MagickOS) project.
