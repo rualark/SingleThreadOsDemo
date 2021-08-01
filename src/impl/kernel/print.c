@@ -127,30 +127,20 @@ void pprint_int(ui8 column, ui8 row, i32 num, ui8 color, ui8 bg_color) {
 }
 
 void pprint_int_pad(ui8 column, ui8 row, i32 num, ui8 pad, ui8 color, ui8 bg_color) {
-    /*
-    if (num >= 0) {
-        for (int i=0; i<128; ++i) {
-            if (i < num) {
-                pprint_char(i % 80, 12 + i / 80, '*', PRINT_COLOR_YELLOW, PRINT_COLOR_BLACK);
-            } else {
-                pprint_char(i % 80, 12 + i / 80, '*', PRINT_COLOR_GREEN, PRINT_COLOR_BLACK);
-            }
-        }
-    } else {
-        for (int i=0; i<128; ++i) {
-            if (i < -num) {
-                pprint_char(i % 80, 8 + i / 80, '*', PRINT_COLOR_RED, PRINT_COLOR_BLACK);
-            } else {
-                pprint_char(i % 80, 8 + i / 80, '*', PRINT_COLOR_BLUE, PRINT_COLOR_BLACK);
-            }
-        }
-    }
-    */
     char str[pad + 1];
     for (size_t i = 1; i < pad; ++i) {
         str[i] = ' ';
     }
     str[pad] = '\0';
     itoa(num, str, false);
+    pprint_str(column, row, str, color, bg_color);
+}
+
+void pprint_int_pad0(ui8 column, ui8 row, i32 num, ui8 pad, ui8 color, ui8 bg_color) {
+    char str[pad + 1];
+    for (size_t i = 0; i < pad; ++i) {
+        str[i] = '0';
+    }
+    itoa(num, &(str[pad - digit_count(num)]), true);
     pprint_str(column, row, str, color, bg_color);
 }

@@ -14,7 +14,7 @@ void kernel_main() {
     print_set_color(PRINT_COLOR_WHITE, PRINT_COLOR_BLACK);
     print_str("Waiting exactly for 3 seconds: ");
     nanosleep_init();
-    for (int i = 0; i < 30; i++) {
+    for (int i = 0; i < 1; i++) {
         nanosleep(100000);
         print_str(".");
     }
