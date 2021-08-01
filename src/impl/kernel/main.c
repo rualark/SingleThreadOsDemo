@@ -18,7 +18,6 @@ void show_date_time() {
     pprint_int_pad0(14, 23, r.minute, 2, PRINT_COLOR_WHITE, PRINT_COLOR_BLACK);
     pprint_char(16, 23, ':', PRINT_COLOR_WHITE, PRINT_COLOR_BLACK);
     pprint_int_pad0(17, 23, r.second, 2, PRINT_COLOR_WHITE, PRINT_COLOR_BLACK);
-    pprint_str(20, 23, "UTC", PRINT_COLOR_WHITE, PRINT_COLOR_BLACK);
 }
 
 void kernel_main() {
