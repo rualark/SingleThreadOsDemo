@@ -9,6 +9,7 @@
 - Input string
 - Precise nanosleep using PIT
 - Move cursor
+- Shows real-time colorful animation
 
 ## Nanosleep implementation
 
