@@ -161,7 +161,7 @@ void show_fires() {
             if (fire[i].column == 0 || fire[i].column == NUM_COLS - 1) {
                 fire_char = '\x0F';
                 if (fire[i].direction == LEFT_ARROW || fire[i].direction == RIGHT_ARROW) {
-                    fire[i].speed = rand() % 10 + 10;
+                    fire[i].speed = fire[i].speed * 2;
                     fire[i].direction = DOWN_ARROW;
                 }
             }
