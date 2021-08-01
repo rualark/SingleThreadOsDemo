@@ -61,6 +61,7 @@ make build-x86_64
 Now dist/x86_64/ will contain kernel.iso file
 
 Insert USB flash drive
+
 Download Rufus
 
 ![image](https://user-images.githubusercontent.com/15198808/127573774-8b746020-bbcb-402c-ae2b-91dee1957b5b.png)
