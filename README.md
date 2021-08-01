@@ -1,5 +1,7 @@
 # Simple OS Demo
 
+![image](https://user-images.githubusercontent.com/15198808/127759750-57841673-2c92-4396-8916-d6fddcbc2843.png)
+
 ## Functions
 
 - Boots with grub in qemu or USB flash
