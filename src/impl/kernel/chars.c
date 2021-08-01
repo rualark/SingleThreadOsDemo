@@ -1,6 +1,6 @@
 #include "chars.h"
 
-char get_ascii_char(uint8 key_code)
+char get_ascii_char(ui8 key_code)
 {
   switch(key_code){
     case KEY_A : return 'A';
@@ -54,7 +54,7 @@ char get_ascii_char(uint8 key_code)
   }
 }
 
-char get_ascii_char_lower(uint8 key_code)
+char get_ascii_char_lower(ui8 key_code)
 {
   switch(key_code){
     case KEY_A : return 'a';

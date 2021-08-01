@@ -1,3 +1,4 @@
+*.o
 
-dist/x86_64/kernal.iso
-dist/x86_64/kernal.bin
+dist/x86_64/kernel.iso
+dist/x86_64/kernel.bin

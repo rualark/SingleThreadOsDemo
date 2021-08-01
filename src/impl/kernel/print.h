@@ -3,6 +3,8 @@
 #include <stdint.h>
 #include <stddef.h>
 
+#define NUM_COLS 80
+#define NUM_ROWS 25
 
 enum {
     PRINT_COLOR_BLACK = 0,
@@ -28,4 +30,3 @@ void print_char(char character);
 void print_str(char* string);
 void print_set_color(uint8_t foreground, uint8_t background);
 size_t input_pos;
-size_t block_del_pos;

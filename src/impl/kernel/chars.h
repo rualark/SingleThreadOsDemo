@@ -5,7 +5,7 @@
 #include "keyboard.h"
 
 
-extern char get_ascii_char(uint8);
+extern char get_ascii_char(ui8);
 
 #endif
 

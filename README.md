@@ -26,8 +26,8 @@ to leave the build environment type `exit`
 
 Emulate Magick-OS using Qemu
 
-- `qemu-system-x86_64 -cdrom dist/x86_64/kernal.iso`
+- `qemu-system-x86_64 -cdrom dist/x86_64/kernel.iso`
 
 use this one if you have added to path and the previous doesn't work
 
-- `"C:\Program Files\qemu\qemu-system-x86_64.exe" -cdrom dist/x86_64/kernal.iso`
+- `"C:\Program Files\qemu\qemu-system-x86_64.exe" -cdrom dist/x86_64/kernel.iso`
