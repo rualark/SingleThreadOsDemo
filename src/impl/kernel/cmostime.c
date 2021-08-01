@@ -1,4 +1,6 @@
 #include "cmostime.h"
+#include "nanosleep/nanosleep.h"
+#include "utils.h"
 
 #define CMOS_PORT    0x70
 #define CMOS_RETURN  0x71

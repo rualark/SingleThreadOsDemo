@@ -2,6 +2,9 @@
 #include "keyboard.h"
 #include "print.h"
 #include "types.h"
+#include "chars.h"
+#include "utils.h"
+#include "color_spin.h"
 
 static ui8 get_input_keycode() {
     ui8 code = 0;

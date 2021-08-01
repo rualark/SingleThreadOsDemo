@@ -1,6 +1,8 @@
 #include "types.h"
 #include "print.h"
 #include "cmostime.h"
+#include "rand.h"
+#include "nanosleep/nanosleep.h"
 
 static ui32 spin = 0;
 static char spin_char[] = "|/-\\";
@@ -169,21 +171,21 @@ void show_random_ship() {
         }
         bool ship_moved = false;
         // Randomly choose movement or orientation of ship
-        if (rand() % 2 && ship_column) {
+        if (rand() % 2 && ship_column > 1) {
             // Randomly choose if we move ship or just orient it
             if (rand() % 2) {
                 ship_column--;
                 ship_moved = true;
             }
             ship_char = LEFT_ARROW;
-        } else if (ship_column + 1 < NUM_COLS) {
+        } else if (ship_column + 2 < NUM_COLS) {
             if (rand() % 2) {
                 ship_column++;
                 ship_moved = true;
             }
             ship_char = RIGHT_ARROW;
         }
-        if (rand() % 2 && ship_row) {
+        if (rand() % 2 && ship_row > 1) {
             if (rand() % 2) {
                 ship_row--;
                 ship_moved = true;
@@ -192,7 +194,7 @@ void show_random_ship() {
                 ship_char = UP_ARROW;
             }
             ship_moved = true;
-        } else if (ship_row + 1 < NUM_ROWS) {
+        } else if (ship_row + 2 < NUM_ROWS) {
             if (rand() % 2) {
                 ship_row++;
                 ship_moved = true;
@@ -214,7 +216,7 @@ void show_random_ship() {
     }
     hide_fires();
     if (spin % 15 == 0) {
-        if (ship_char != '\x0F' && rand() % 1 == 0 && ship_column > 0 && ship_column < NUM_COLS - 1 && ship_row > 0 && ship_row < NUM_ROWS - 1) {
+        if (ship_char != '\x0F' && rand() % 1 == 0 && ship_column > 1 && ship_column < NUM_COLS - 2 && ship_row > 1 && ship_row < NUM_ROWS - 2) {
             new_fire(ship_char);
         }
     }

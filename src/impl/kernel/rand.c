@@ -1,3 +1,5 @@
+#include "rand.h"
+
 static unsigned long int next = 1;
  
 // RAND_MAX assumed to be 32767

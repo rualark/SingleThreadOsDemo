@@ -1,4 +1,5 @@
 #include "types.h"
+#include "utils.h"
 
 //Play sound using built in speaker
 static void play_sound(ui32 nFrequence) {
