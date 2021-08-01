@@ -80,8 +80,9 @@ void hide_fires() {
         if (fire[i].active) {
             // Restore symbol that was hidden by fire if not color spin
             if (fire[i].row != 22) {
-                // Do not remove backspaced symbols
-                if (get_screen_color_char(fire[i].column, fire[i].row).character != ' ') {
+                // Hide only ourselves
+                char c = get_screen_color_char(fire[i].column, fire[i].row).character;
+                if (c == '\x07' || c == '\x0F') {
                     pprint_char(fire[i].column, fire[i].row, fire[i].history.character, fire[i].history.color, PRINT_COLOR_BLACK);
                 }
             } else {
@@ -151,10 +152,13 @@ void show_random_ship() {
             fire[i].active = false;
         }
     }
-    char ship_char = '*';
+    char ship_char = '\x0F';
     if (spin % 15 == 0) {
         // Restore symbol that was hidden by ship
-        pprint_char(ship_column, ship_row, ship_history.character, ship_history.color & 0xF, ship_history.color >> 4 & 0xF);
+        char c = get_screen_color_char(ship_column, ship_row).character;
+        if (c == LEFT_ARROW || c == RIGHT_ARROW || c == UP_ARROW || c == DOWN_ARROW || c == '\x0F') {
+            pprint_char(ship_column, ship_row, ship_history.character, ship_history.color & 0xF, ship_history.color >> 4 & 0xF);
+        }
         // Color ship with contrasting color if not empty space or black
         if (ship_history.character != ' ' && ship_history.character != '\0' && ship_history.color > 0) {
             ship_color = ((ship_history.color & 0xF) + 2) % 16;
@@ -205,12 +209,12 @@ void show_random_ship() {
         if (ship_moved) {
             ship_history = get_screen_color_char(ship_column, ship_row);
         } else {
-            ship_char = '*';
+            ship_char = '\x0F';
         }
     }
     hide_fires();
     if (spin % 15 == 0) {
-        if (ship_char != '*' && rand() % 1 == 0 && ship_column > 0 && ship_column < NUM_COLS - 1 && ship_row > 0 && ship_row < NUM_ROWS - 1) {
+        if (ship_char != '\x0F' && rand() % 1 == 0 && ship_column > 0 && ship_column < NUM_COLS - 1 && ship_row > 0 && ship_row < NUM_ROWS - 1) {
             new_fire(ship_char);
         }
     }
