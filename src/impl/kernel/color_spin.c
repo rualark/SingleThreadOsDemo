@@ -30,13 +30,21 @@ static struct ColorChar beetle_history = (struct ColorChar) {
 
 void show_random_beetle() {
     if (spin % 15 == 0) {
+        // Restore symbol that was hidden by beetle
         pprint_char(beetle_column, beetle_row, beetle_history.character, beetle_history.color & 0xF, beetle_history.color >> 4 & 0xF);
-        if (beetle_history.character != ' ' && beetle_history.character != '\0') {
-            beetle_color = beetle_history.color;
+        // Color beetle with contrasting color if not empty space or black
+        if (beetle_history.character != ' ' && beetle_history.character != '\0' && beetle_history.color > 0) {
+            beetle_color = ((beetle_history.color & 0xF) + 2) % 16;
+            // Do not use dark colors
+            if (beetle_color < 2) {
+                beetle_color += 3;
+            }
         }
         bool beetle_moved = false;
         char beetle_char = '*';
+        // Randomly choose movement or orientation of beetle
         if (rand() % 2 && beetle_column) {
+            // Randomly choose if we move beetle or just orient it
             if (rand() % 2) {
                 beetle_column--;
                 beetle_moved = true;
@@ -67,14 +75,17 @@ void show_random_beetle() {
                 beetle_char = '\x1F';
             }
         }
+        // Sometimes randomly change beetle color
         if (rand() % 100 == 0) {
             beetle_color = rand() % 15 + 1;
         }
+        // Save character and color before overwriting with beetle
         if (beetle_moved) {
             beetle_history = get_screen_color_char(beetle_column, beetle_row);
         } else {
             beetle_char = '*';
         }
+        // Draw beetle
         pprint_char(beetle_column, beetle_row, beetle_char, beetle_color, PRINT_COLOR_BLACK);
     }
 }
