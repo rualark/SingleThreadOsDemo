@@ -12,7 +12,7 @@
 - Pseudo random number generator
 - Shows CPU vendor string
 - Shows date and time (updates every second)
-- Shows real-time colorful animation
+- Shows asynchronous real-time random colorful animation with fixed speed
 
 ## Nanosleep implementation
 
