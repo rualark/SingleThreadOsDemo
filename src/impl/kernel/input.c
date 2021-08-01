@@ -8,11 +8,12 @@ static ui8 get_input_keycode() {
     while (!code) {
         // This is just colored spin as a demo
         show_spin();
+        show_date_time();
         code = inb(KEYBOARD_PORT);
     }
     
     // This outputs key code at the bottom of the screen for debug
-    pprint_int_pad(75, 24, code, 4, PRINT_COLOR_RED, PRINT_COLOR_BLACK);
+    pprint_int_pad(75, 23, code, 4, PRINT_COLOR_RED, PRINT_COLOR_BLACK);
 
     return code;
 }

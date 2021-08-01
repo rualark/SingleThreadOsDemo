@@ -2,6 +2,24 @@
 
 #include "print.h"
 #include "nanosleep/nanosleep.h"
+#include "cmostime.h"
+
+void show_date_time() {
+    struct rtcdate r;
+    cmostime(&r);
+    pprint_int(0, 23, r.year, PRINT_COLOR_WHITE, PRINT_COLOR_BLACK);
+    pprint_char(4, 23, '-', PRINT_COLOR_WHITE, PRINT_COLOR_BLACK);
+    pprint_int_pad0(5, 23, r.month, 2, PRINT_COLOR_WHITE, PRINT_COLOR_BLACK);
+    pprint_char(7, 23, '-', PRINT_COLOR_WHITE, PRINT_COLOR_BLACK);
+    pprint_int_pad0(8, 23, r.day, 2, PRINT_COLOR_WHITE, PRINT_COLOR_BLACK);
+
+    pprint_int_pad0(11, 23, r.hour, 2, PRINT_COLOR_WHITE, PRINT_COLOR_BLACK);
+    pprint_char(13, 23, ':', PRINT_COLOR_WHITE, PRINT_COLOR_BLACK);
+    pprint_int_pad0(14, 23, r.minute, 2, PRINT_COLOR_WHITE, PRINT_COLOR_BLACK);
+    pprint_char(16, 23, ':', PRINT_COLOR_WHITE, PRINT_COLOR_BLACK);
+    pprint_int_pad0(17, 23, r.second, 2, PRINT_COLOR_WHITE, PRINT_COLOR_BLACK);
+    pprint_str(20, 23, "UTC", PRINT_COLOR_WHITE, PRINT_COLOR_BLACK);
+}
 
 void kernel_main() {
     enable_cursor(13, 15);
@@ -11,10 +29,16 @@ void kernel_main() {
     print_str("Welcome to simple OS demo\n\n");
     beep();
 
+    char vendor_str[13];
+    CPUID_vendor_string(vendor_str);
     print_set_color(PRINT_COLOR_WHITE, PRINT_COLOR_BLACK);
-    print_str("Waiting exactly for 3 seconds: ");
+    print_str("Detected CPU vendor string: ");
+    print_str(vendor_str);
+
+    print_set_color(PRINT_COLOR_WHITE, PRINT_COLOR_BLACK);
+    print_str("\n\nWaiting exactly for 3 seconds: ");
     nanosleep_init();
-    for (int i = 0; i < 1; i++) {
+    for (int i = 0; i < 30; i++) {
         nanosleep(100000);
         print_str(".");
     }
@@ -30,4 +54,10 @@ void kernel_main() {
 
     print_set_color(PRINT_COLOR_RED, PRINT_COLOR_BLACK);
     print_str("\n\nGood bye!");
+
+    while (true) {
+        show_spin();
+        show_date_time();
+    }
 }
+
