@@ -9,6 +9,9 @@
 - Input string
 - Precise nanosleep using PIT
 - Move cursor
+- Pseudo random number generator
+- Shows CPU vendor string
+- Shows date and time (updates every second)
 - Shows real-time colorful animation
 
 ## Nanosleep implementation
