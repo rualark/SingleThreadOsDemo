@@ -1,4 +1,4 @@
-# Simple OS Demo
+# Single-thread OS demo (no interrupts)
 
 ![image](https://i.imgur.com/ry4cy5h.gif)
 
@@ -6,8 +6,8 @@
 
 - Boots with grub in qemu or USB flash
 - Printing
-- Input string (supports Shift, BackSpace, Enter, Esc)
-- Precise nanosleep using PIT
+- Input string (supports Shift, BackSpace, Enter, Esc without interrupts)
+- Precise nanosleep using PIT (without interrupts)
 - Move cursor
 - Pseudo random number generator
 - Shows CPU vendor string
