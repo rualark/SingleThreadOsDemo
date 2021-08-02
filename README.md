@@ -1,4 +1,4 @@
-# Simple OS Demo
+# Single-thread (no interrupts) OS demo
 
 ![image](https://i.imgur.com/ry4cy5h.gif)
 
