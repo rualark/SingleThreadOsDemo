@@ -39,6 +39,8 @@ void kernel_main() {
     nanosleep_init();
     for (int i = 0; i < 30; i++) {
         for (int w = 0; w < 10; ++w) {
+            nanosleep(10000);
+        
             show_date_time();
             show_color_spin();
             show_random_ship();
@@ -59,9 +61,10 @@ void kernel_main() {
     print_str("\n\nGood bye!");
 
     while (true) {
+        nanosleep(10000);
+
         show_date_time();
         show_color_spin();
         show_random_ship();
     }
 }
-

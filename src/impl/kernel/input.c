@@ -9,10 +9,12 @@
 static ui8 get_input_keycode() {
     ui8 code = 0;
     while (!code) {
-        // This is just colored spin as a demo
+        nanosleep(10000);
+
         show_date_time();
         show_color_spin();
         show_random_ship();
+
         code = inb(KEYBOARD_PORT);
     }
     
