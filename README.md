@@ -6,7 +6,7 @@
 
 - Boots with grub in qemu or USB flash
 - Printing
-- Input string (supports Shift, BackSpace, Enter, Esc)
+- Input string (supports Shift, BackSpace, Enter, Esc without interrupts)
 - Precise nanosleep using PIT (without interrupts)
 - Move cursor
 - Pseudo random number generator
