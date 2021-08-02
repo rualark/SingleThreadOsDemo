@@ -20,7 +20,7 @@ The idea behind nanosleep implementation: read PIT counter and calculate number 
 
 ## Background
 
-Based on [this](https://www.youtube.com/watch?v=FkrpUaGThTQ&list=PLZQftyCk7_SeZRitx5MjBKzTtvk0pHMtp&index=1) tutorial by CodePulse, and [this](https://github.com/Roseinabox28/MagickOS) project.
+Based on [this](https://www.youtube.com/watch?v=FkrpUaGThTQ&list=PLZQftyCk7_SeZRitx5MjBKzTtvk0pHMtp&index=1) tutorial by CodePulse, XV6 and [this](https://github.com/Roseinabox28/MagickOS) project.
 
 ## Setup
 
