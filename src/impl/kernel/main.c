@@ -4,6 +4,19 @@
 #include "nanosleep/nanosleep.h"
 #include "cmostime.h"
 
+void seed_rand() {
+    struct rtcdate r;
+    cmostime(&r);
+    srand(
+        r.second + 
+        r.minute * 60 +
+        r.hour * 60 * 60 +
+        r.day * 60 * 60 * 24 +
+        r.month * 60 * 60 * 24 * 31 +
+        r.year * 60 * 60 * 24 * 31 * 12
+    );
+}
+
 void show_date_time() {
     struct rtcdate r;
     cmostime(&r);
@@ -26,6 +39,8 @@ void kernel_main() {
     print_clear();
     print_set_color(PRINT_COLOR_YELLOW, PRINT_COLOR_BLACK);
     print_str("\nWelcome to simple OS demo\n\n");
+
+    seed_rand();
     beep();
 
     char vendor_str[13];
