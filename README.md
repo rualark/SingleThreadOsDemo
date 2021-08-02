@@ -7,7 +7,7 @@
 - Boots with grub in qemu or USB flash
 - Printing
 - Input string (supports Shift, BackSpace, Enter, Esc)
-- Precise nanosleep using PIT
+- Precise nanosleep using PIT (without interrupts)
 - Move cursor
 - Pseudo random number generator
 - Shows CPU vendor string
