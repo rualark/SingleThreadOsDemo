@@ -33,7 +33,9 @@ void show_date_time() {
     pprint_int_pad0(17, 23, r.second, 2, PRINT_COLOR_WHITE, PRINT_COLOR_BLACK);
 }
 
+// This is the main function called from main64.asm
 void kernel_main() {
+    // Enables display of cursor on screen
     enable_cursor(13, 15);
 
     print_clear();
@@ -41,19 +43,24 @@ void kernel_main() {
     print_str("\nWelcome to simple OS demo\n\n");
 
     seed_rand();
+    // Try to beep with PC speaker
     beep();
 
+    // Get and display CPU verndor string
     char vendor_str[13];
     CPUID_vendor_string(vendor_str);
     print_set_color(PRINT_COLOR_WHITE, PRINT_COLOR_BLACK);
     print_str("Detected CPU vendor string: ");
     print_str(vendor_str);
 
+    // Wait for 3 seconds, while updating date/time, color spin and randomly moving ship
     print_set_color(PRINT_COLOR_WHITE, PRINT_COLOR_BLACK);
     print_str("\n\nWaiting for exactly 3 seconds: ");
     nanosleep_init();
     for (int i = 0; i < 30; i++) {
+        // Sleep for 100 ms and then print a dot
         for (int w = 0; w < 10; ++w) {
+            // Sleep for 10 ms
             nanosleep(10000);
         
             show_date_time();
@@ -63,6 +70,7 @@ void kernel_main() {
         print_str(".");
     }
 
+    // Input some string
     print_set_color(PRINT_COLOR_GREEN, PRINT_COLOR_BLACK);
     print_str("\n\nPlease enter your name: ");
     int max_len = 50;
@@ -75,6 +83,7 @@ void kernel_main() {
     print_set_color(PRINT_COLOR_RED, PRINT_COLOR_BLACK);
     print_str("\n\nGood bye!");
 
+    // In the end, continue updating date/time, color spin and randomly moving ship
     while (true) {
         nanosleep(10000);
 
