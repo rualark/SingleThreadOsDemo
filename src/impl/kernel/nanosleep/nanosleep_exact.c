@@ -25,9 +25,8 @@ ui16 nanosleep_exact_continue(ui32 nanoseconds, ui32 hint) {
     ui32 ticks = 
         nanoseconds
         + nanoseconds / 5
-        - nanoseconds / 147
-        - nanoseconds / 61224
-        + nanoseconds / 1387158;
+        - nanoseconds / 146
+        + nanoseconds / 32277;
     ui32 ticks_passed = 0;
     ui16 old_counter = hint;
     ui16 counter = old_counter;
